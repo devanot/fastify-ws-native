@@ -1,12 +1,12 @@
 # fastify-ws-native
 
-Fastify-first WebSocket plugin using `ws`, with native route ergonomics:
+A Fastify WebSocket plugin using `ws`, with native route ergonomics:
 
 ```js
 fastify.get('/chat', { websocket: true }, (socket, req) => {
   socket.send('hello');
 });
-
+```
 ---
 
 ## Why
