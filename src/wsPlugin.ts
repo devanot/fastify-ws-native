@@ -1,7 +1,5 @@
 import fp from 'fastify-plugin';
-// import type { FastifyInstance, FastifyPluginAsync, FastifyRequest } from 'fastify';
-// import type { FastifyInstance, FastifyPluginCallback, FastifyRequest } from 'fastify';
-import type { FastifyInstance, FastifyPluginAsync, FastifyPluginCallback, FastifyRequest } from 'fastify';
+import type { FastifyInstance, FastifyPluginCallback, FastifyRequest } from 'fastify';
 import { WebSocketServer, WebSocket } from 'ws';
 import { URL } from 'url';
 
@@ -119,23 +117,12 @@ function attachSafeSend(ws: WebSocket, highWaterMarkBytes?: number) {
 
 // ---- Plugin -----------------------------------------------------------------
 
-console.log('wsPlugin module load start:');
-
-function syncDelay(ms: number) {
-  const start = Date.now();
-  let now = start;
-  while (now - start < ms) {
-    now = Date.now();
-  }
-}
-
 const wsPlugin: FastifyPluginCallback = function (fastify, pluginOpts, pluginDone) {
   fastify.decorate('_wsRoutes', new Map<string, RouteContext>());
   fastify.decorate('setWebSocketOriginPolicy', function (policy: OriginPolicy) {
     this._wsOriginPolicy = policy;
   });
   fastify.decorate('getWebSocketRoute', function (path: string) {
-    console.log('getWebSocketRoute called.\n\t this._wsRoutes.length: ', this._wsRoutes?.size);
     return this._wsRoutes!.get(path);
   });
   fastify.decorate('wsBroadcast', function (path: string, data: any, opts?: { binary?: boolean; filter?: (ws: WebSocket) => boolean }) {
@@ -317,7 +304,6 @@ const wsPlugin: FastifyPluginCallback = function (fastify, pluginOpts, pluginDon
         userHandler(ws, req);
       });
     };
-  // });
   };
 
   fastify.addHook('onRoute', processRoute);
