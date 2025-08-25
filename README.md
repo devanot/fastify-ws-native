@@ -56,6 +56,8 @@ await app.listen({ port: 3000 });
 
 ```
 
+Check for more examples [here](https://github.com/devanot/fastify-ws-native/tree/main/examples).
+
 ---
 
 
@@ -94,5 +96,3 @@ await app.listen({ port: 3000 });
 
 
 ---
-
-
