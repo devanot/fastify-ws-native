@@ -1,0 +1,75 @@
+{
+  "name": "fastify-ws-native",
+  "version": "0.1.0",
+  "description": "A Fastify WebSocket plugin using ws with native fastify route ergonomics, per-route options, JWT, origin policy, and production safeguards.",
+  "keywords": [
+    "fastify",
+    "websocket",
+    "ws",
+    "plugin",
+    "jwt",
+    "origin",
+    "heartbeat",
+    "backpressure"
+  ],
+  "license": "MIT",
+  "author": "devanot <devnodevue@outlook.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devanot/fastify-ws-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devanot/fastify-ws-native/issues"
+  },
+  "homepage": "https://github.com/devanot/fastify-ws-native#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "fastify": ">=4 <6",
+    "ws": "^8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@fastify/jwt": {
+      "optional": true
+    },
+    "@fastify/cookie": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@fastify/jwt": "^10.0.0",
+    "@types/node": "^24.3.0",
+    "@types/ws": "^8.18.1",
+    "fastify": "^5.5.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
+    "ws": "^8.18.3"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
+  }
+}

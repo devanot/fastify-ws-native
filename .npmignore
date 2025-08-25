@@ -1,0 +1,7 @@
+examples
+test
+src/**/*.test.ts
+tsup.config.ts
+tsconfig.json
+.vscode
+.DS_Store
